@@ -1,0 +1,62 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <x-app-layout>
+            <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+                <form method="POST" action="{{ route('gymsessions.store') }}">
+                    @csrf
+                    
+                    <div id="date-section" class="w-fit mx-auto">
+                        <label for="date" class="mr-4">Date:</label>
+                        <input required type="date" name="date" id="date-input" value="" class="inline border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div id="exercise-name-section" class="w-fit mx-auto">
+                        <label for="exercise-name" class="inline-block align-top mt-2 mr-4">Exercise:</label>
+                        <textarea name="exercise-name" class="inline-block w-80 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
+                    </div>
+                    
+                    <div id="detail-section" class="w-fit mx-auto">
+
+                        <div class="w-60 mx-auto my-5">
+                            <label for="weight" class="inline-block w-16 mr-4">Weight:</label>
+                            <input type="number" name="weight" value="" class="w-28 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                            <span class="text-slate-300">(kg)</span>
+                        </div>
+
+                        <div class="w-60 mx-auto my-5">
+                            <label for="Reps" class="inline-block w-16 mr-4">Reps:</label>
+                            <input type="number" name="Reps" value="" class="w-28 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        </div>
+
+                        <div class="w-60 mx-auto my-5">
+                            <label for="Sets" class="inline-block w-16 mr-4">Sets:</label>
+                            <input type="number" name="Sets" value="" class="w-28 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                        </div>
+
+                    </div>
+
+                    <hr class="my-5">
+
+                    <x-input-error :messages="$errors->get('exercise-name')" class="mt-2" />
+
+                    <x-primary-button>Save session</x-primary-button>
+                </form>
+            </div>
+        </x-app-layout>
+    </body>
+
+    <script>
+        // Default date picker to today's date, set valid date range from 1 year ago to today 
+        const dateInput = document.getElementById("date-input");
+        var date = new Date();
+        dateInput.valueAsDate = date;
+        dateInput.setAttribute("max", date.toISOString().split('T')[0]);
+        date.setFullYear(date.getFullYear() - 1);
+        dateInput.setAttribute("min", date.toISOString().split('T')[0]);
+    </script>
+
+</html>
