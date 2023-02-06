@@ -1,4 +1,6 @@
-        // Default date picker to today's date, set valid date range from 1 year ago to today 
+        /* Default date picker to today's date, set valid date range from 1 year ago to today 
+        */
+
         const dateInput = document.getElementById("date-input");
         var date = new Date();
         dateInput.valueAsDate = date;
