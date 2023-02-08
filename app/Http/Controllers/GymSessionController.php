@@ -36,9 +36,9 @@ class GymSessionController extends Controller
     {
         $validated = $request->validate([
             'exercise-name'     => 'required|string|max:255',
-            'weight'            => 'required|numeric',
-            'sets'              => 'required|integer',
-            'reps'              => 'required|integer',
+            'weight'            => 'required|numeric|min:0.1|max:500',
+            'sets'              => 'required|integer|min:1|max:100',
+            'reps'              => 'required|integer|min:1|max:1000',
         ]);
  
         $request->user()->gymsessions()->create($validated);

@@ -27,7 +27,7 @@
                 </div>
             </div>
 
-            <button type="button" onclick="addExercise()">Add</button>
+            <button type="button" onclick="doSesh()">Add</button>
 
             <div id="completed-exercises">
             </div>
@@ -37,8 +37,18 @@
             <x-input-error :messages="$errors->get('exercise-name')" class="mt-2" />
 
             <x-primary-button>Save session</x-primary-button>
+            
         </form>
     </div>
     <script src="\js\setdatepicker.js"></script>
     <script src="\js\exercises.js"></script>
 </x-app-layout>
+
+<script>
+
+    sesh = new gymSession;
+
+    function doSesh() {
+        sesh.addExercise();
+    }
+</script>

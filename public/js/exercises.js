@@ -1,18 +1,42 @@
-const completed =       document.getElementById("completed-exercises");
-const exercise =        document.querySelector("[name='exercise-name']");
-const weight =          document.querySelector("[name='weight']");
-const reps =            document.querySelector("[name='reps']");
-const newExercise =     document.createElement("div");
-var exerciseCount =     0;
-var exerciseString =    "";
+class gymSession {
+    
+    constructor() {
+        this.exercNameInput = document.querySelector('textarea[name="exercise-name"]');
+        this.weightInput = document.querySelector('input[name="weight"]');
+        this.repsInput = document.querySelector('input[name="reps"]');
+        this.completedExercContainer = document.getElementById('completed-exercises');
+    }
 
-function addExercise() {
-    if (exercise.value && weight.value && reps.value) {
-        exerciseCount++;
-        newExercise.setAttribute("data-exercise-count",exerciseCount);
-        exerciseString = exercise.value + ", " + weight.value.toString() + "kg, " + reps.value.toString() + " reps.";
-        exerciseString = document.createTextNode(exerciseString);
-        newExercise.appendChild(exerciseString);
-        completed.appendChild(newExercise);
+    addExercise() {
+        if (this.exercNameInput.value && this.weightInput.value && this.repsInput.value) {
+            var exercToAdd = this.createExercElem();
+            document.getElementById('completed-exercises').appendChild(exercToAdd);
+            this.exercNameInput.value = "";
+            this.weightInput.value = "";
+            this.repsInput.value = "";
+        }
+    }
+
+    createExercElem() {
+        var exercElem = document.createElement("div");
+        exercElem.innerHTML = '<span class="exerc-name">' + this.exercNameInput.value + '</span>, ';
+        exercElem.innerHTML += 'weight: <span class="weight">' + this.weightInput.value + '</span>(kg), ';
+        exercElem.innerHTML += 'reps: <span class="reps">' + this.repsInput.value + '</span>';
+        exercElem.innerHTML += '<span class="delete-exercise">x</span>';
+        return exercElem;
+    }
+
+    removeExercElem() {
+
+    }
+
+    exercsToJson() {
+        if (this.completedExercContainer.children.length > 0) {
+
+        }
+    }
+
+    submitSession() {
+
     }
 }
